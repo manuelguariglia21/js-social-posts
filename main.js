@@ -59,7 +59,7 @@ const posts = [
 //ciclo stampa
 for(let i = 0; i < posts.length; i++){
     printPost(posts[i]);
-    checkLikes(posts[i].id);
+    checkLikes(posts[i]);
 }
 
 
@@ -110,11 +110,14 @@ function printPost(object){
 }
 
 //funzione like
-function checkLikes(id){
-    const like = document.getElementById(id);
+function checkLikes(btn){
+    const like = document.getElementById(btn.id);
+    const likes = document.getElementById('like-counter-' + btn.id);
 
     like.addEventListener('click', function(){
         this.classList.add('like-button--liked');
+        likes.innerHTML = ``;
+        likes.append(btn.likes + 1);
     });
 }
 
