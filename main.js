@@ -56,10 +56,15 @@ const posts = [
     }
 ];
 
-
+//ciclo stampa
 for(let i = 0; i < posts.length; i++){
     printPost(posts[i]);
+    checkLikes(posts[i].id);
 }
+
+
+
+
 
 
 //funzione per stampare il post
@@ -89,19 +94,28 @@ function printPost(object){
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="${object.author.name}">
+                        <a class="like-button  js-like-button" id="${object.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${object.likes}</b> persone
+                        Piace a <b id="like-counter-${object.id}" class="js-likes-counter">${object.likes}</b> persone
                     </div>
                 </div> 
             </div> 
     `;
 
     container.append(post);
-
-
 }
+
+//funzione like
+function checkLikes(id){
+    const like = document.getElementById(id);
+
+    like.addEventListener('click', function(){
+        this.classList.add('like-button--liked');
+    });
+}
+
+
