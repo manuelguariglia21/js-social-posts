@@ -60,6 +60,7 @@ const posts = [
 for(let i = 0; i < posts.length; i++){
     printPost(posts[i]);
     checkLikes(posts[i]);
+    
 }
 
 
@@ -72,7 +73,14 @@ for(let i = 0; i < posts.length; i++){
 function printPost(object){
 
     const container = document.getElementById('container');
-    
+    const data = new Date(object.created);
+    const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+    "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    ];
+    const day = data.getDay();
+    console.log(day);
+    const month = monthNames[data.getMonth()];
+    const year = data.getFullYear();
     const post = document.createElement('div');
     post.className = 'post';
     post.innerHTML = `
@@ -83,7 +91,7 @@ function printPost(object){
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${object.author.name}</div>
-                        <div class="post-meta__time">${object.created}</div>
+                        <div class="post-meta__time">${day}  ${month}  ${year}</div>
                     </div>                    
                 </div>
             </div>
